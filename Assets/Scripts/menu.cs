@@ -19,4 +19,9 @@ public class menu : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
+
+    public void Leaderboard() 
+    {
+        SceneManager.LoadScene("leaderborad");
+    }
 }
