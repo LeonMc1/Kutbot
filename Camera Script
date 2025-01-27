@@ -1,0 +1,25 @@
+using UnityEngine;
+
+public class CameraFollow : MonoBehaviour
+{
+    public Transform player;  // Reference to the player
+    public float smoothSpeed = 0.1f;  // Camera movement smoothness
+    private float fixedX;  // Fixed X-position of the camera
+
+    void Start()
+    {
+        if (player != null)
+        {
+            fixedX = transform.position.x;  // Lock the camera's X-position
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (player != null)
+        {
+            Vector3 targetPosition = new Vector3(fixedX, player.position.y, transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
+        }
+    }
+}
