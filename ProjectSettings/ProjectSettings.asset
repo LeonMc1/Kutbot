@@ -665,11 +665,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: de39fa30-5ac1-49c3-b026-b298c79025dc
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Kutbot 2025-01-27_16-52-49
+  organizationId: paleo_soup
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

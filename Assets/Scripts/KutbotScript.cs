@@ -10,6 +10,8 @@ public class KutbotScript : MonoBehaviour
     private bool isGrounded = false;
     public GameObject cam;
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -24,8 +26,12 @@ public class KutbotScript : MonoBehaviour
             isGrounded = false; // Setzt den Grounded-Status auf false, wenn der Spieler springt
         }
 
+
+
+
+
         // Kamera folgt dem Spieler
-        cam.transform.position = new Vector3(rb.position.x, rb.position.y+ 1, cam.transform.position.z);
+        //cam.transform.position = new Vector3(rb.position.x, rb.position.y+ 1, cam.transform.position.z);
 
         if (horizontal > 0.01f)
         {
@@ -34,6 +40,7 @@ public class KutbotScript : MonoBehaviour
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -44,4 +51,7 @@ public class KutbotScript : MonoBehaviour
             isGrounded = true; // Spieler ist auf dem Boden
         }
     }
+
+
+
 }
