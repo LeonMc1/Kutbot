@@ -1,3 +1,4 @@
+/*
 using UnityEngine;
 
 public class PlayerPickup : MonoBehaviour
@@ -82,3 +83,4 @@ void CreateNewBoxAtOriginalPosition()
         Gizmos.DrawWireSphere(transform.position, pickupRadius);
     }
 }
+*/

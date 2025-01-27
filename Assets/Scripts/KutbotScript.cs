@@ -9,6 +9,7 @@ public class KutbotScript : MonoBehaviour
     [SerializeField] private float jumpForce = 7f; // Sprungkraft anpassen
     private bool isGrounded = false;
     public GameObject cam;
+    public GameObject boxPrefab;
 
 
 
@@ -22,13 +23,15 @@ public class KutbotScript : MonoBehaviour
         // Sprung-Logik
         if (Input.GetKey(KeyCode.W) && isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Setzt nur die Y-Geschwindigkeit für den Sprung
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Setzt nur die Y-Geschwindigkeit fï¿½r den Sprung
             isGrounded = false; // Setzt den Grounded-Status auf false, wenn der Spieler springt
         }
 
-
-
-
+        //Spawn Box
+        if (Input.GetKeyDown(KeyCode.E)) 
+        {
+            boxPrefab = Instantiate(boxPrefab, transform.position, Quaternion.identity);
+        }
 
         // Kamera folgt dem Spieler
         //cam.transform.position = new Vector3(rb.position.x, rb.position.y+ 1, cam.transform.position.z);
@@ -45,7 +48,7 @@ public class KutbotScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Prüft, ob der Spieler den Boden berührt
+        // Prï¿½ft, ob der Spieler den Boden berï¿½hrt
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Box"))
         {
             isGrounded = true; // Spieler ist auf dem Boden

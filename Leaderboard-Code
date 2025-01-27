@@ -1,0 +1,107 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+
+public class NoSuchPlayerException : Exception
+{
+    public NoSuchPlayerException(string message) : base(message) { }
+}
+
+public class Player
+{
+    public string Name { get; set; }
+
+    public Player(string name)
+    {
+        Name = name;
+    }
+}
+
+public class Leaderboard
+{
+    private Dictionary<Player, TimeSpan> Scoreboard { get; set; } = new();
+
+    private Stopwatch timer = new Stopwatch();
+    
+    private TimeSpan gameDuration = TimeSpan.FromMinutes(5);
+
+    public Leaderboard()
+    {
+        timer.Start();
+    }
+
+    public void AddGameResult(Player player)
+    {
+        if (!Scoreboard.ContainsKey(player))
+        {
+            Scoreboard[player] = gameDuration;
+        }
+
+        Scoreboard[player] = gameDuration - timer.Elapsed;
+    }
+
+    public void RemoveResultsForPlayer(Player player)
+    {
+        if (Scoreboard.ContainsKey(player))
+        {
+            Scoreboard.Remove(player);
+        }
+    
+        else
+        {
+            throw new NoSuchPlayerException($"Player {player.Name} has no results");
+        }
+    }
+
+    public void PrintLeaderboard()
+    {
+        Console.WriteLine("Leaderboard:");
+
+        foreach (var entry in Scoreboard)
+        {
+            Console.WriteLine($"Player {entry.Key.Name}: {entry.Value.Minutes:D2}:{entry.Value.Seconds:D2} minutes remaining");
+        }
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Leaderboard leaderboard = new Leaderboard();
+
+        Console.Write("Enter player 1 name: ");
+
+        string player1Name = Console.ReadLine()?.Trim(); //input was skipped when starting system, with chatgpt .trim fixed the problem
+
+        while (string.IsNullOrEmpty(player1Name))
+        {
+            Console.Write("Invalid input. Enter player 1 name: ");
+            player1Name = Console.ReadLine()?.Trim();
+        }
+        Player player1 = new Player(player1Name);
+
+        Console.Write("Enter player 2 name: ");
+
+        string player2Name = Console.ReadLine()?.Trim();
+
+        while (string.IsNullOrEmpty(player2Name))
+        {
+            Console.Write("Invalid input. Enter player 2 name: ");
+            player2Name = Console.ReadLine()?.Trim();
+        }
+        Player player2 = new Player(player2Name);
+
+        leaderboard.AddGameResult(player1);
+
+        Thread.Sleep(2000); //to simulate time passing
+       
+        leaderboard.AddGameResult(player2);
+
+        leaderboard.PrintLeaderboard();
+
+        Console.WriteLine("Press any key to exit...");
+        Console.ReadKey();
+    }
+}

@@ -1641,6 +1641,7 @@ MonoBehaviour:
   speed: 10
   jumpForce: 19
   cam: {fileID: 519420028}
+  boxPrefab: {fileID: 5555334870204495078, guid: ce0cf53ca5ba2e54a9141b33d1fe46aa, type: 3}
 --- !u!61 &1879526829
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1679,6 +1680,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115bd45ed1079da4f89d0b6aeb861c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdPosition: {fileID: 371230493}
-  boxPrefab: {fileID: 5555334870204495078, guid: ce0cf53ca5ba2e54a9141b33d1fe46aa, type: 3}
-  pickupRadius: 3
