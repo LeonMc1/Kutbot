@@ -10,6 +10,8 @@ public class KutbotScript : MonoBehaviour
     private bool isGrounded = false;
     public GameObject cam;
     public GameObject boxPrefab;
+    public float destructionDelay = 30f;
+    public GameObject holdposition;
 
 
 
@@ -30,7 +32,9 @@ public class KutbotScript : MonoBehaviour
         //Spawn Box
         if (Input.GetKeyDown(KeyCode.E)) 
         {
-            boxPrefab = Instantiate(boxPrefab, transform.position, Quaternion.identity);
+            GameObject spawnedBox = Instantiate(boxPrefab, holdposition.transform.position, Quaternion.identity);
+
+            Destroy(spawnedBox, destructionDelay);
         }
 
         // Kamera folgt dem Spieler
