@@ -29,4 +29,8 @@ public class Timer : MonoBehaviour
             death.SetActive(true);
         }
     }
+    public void AddTime(float timeToAdd)
+    {
+        remainingTime += timeToAdd;
+    }
 }
