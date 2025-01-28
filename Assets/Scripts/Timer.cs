@@ -33,14 +33,8 @@ public class Timer : MonoBehaviour
             death.SetActive(true);
         }
     }
-<<<<<<< HEAD
     public void SaveTime()
     {
         finalTime = remainingTime;
-=======
-    public void AddTime(float timeToAdd)
-    {
-        remainingTime += timeToAdd;
->>>>>>> 3a888ec1d66a1253ae7de95f00d91b2230189a40
     }
 }
