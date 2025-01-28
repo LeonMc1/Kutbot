@@ -24,4 +24,9 @@ public class menu : MonoBehaviour
     {
         SceneManager.LoadScene("leaderborad");
     }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("menu");
+    }
 }

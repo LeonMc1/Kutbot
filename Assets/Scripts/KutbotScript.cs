@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KutbotScript : MonoBehaviour
 {
@@ -14,19 +15,17 @@ public class KutbotScript : MonoBehaviour
     public GameObject holdposition;
 
 
-
-    // Update is called once per frame
     void Update()
     {
         // Horizontal Movement
         float horizontal = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Setzt nur die X-Geschwindigkeit
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); //Vertical movement
 
-        // Sprung-Logik
+        // Jump
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Setzt nur die Y-Geschwindigkeit f�r den Sprung
-            isGrounded = false; // Setzt den Grounded-Status auf false, wenn der Spieler springt
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Horizonal movement
+            isGrounded = false; //player is mid air
         }
 
         //Spawn Box
@@ -36,9 +35,6 @@ public class KutbotScript : MonoBehaviour
 
             Destroy(spawnedBox, destructionDelay);
         }
-
-        // Kamera folgt dem Spieler
-        //cam.transform.position = new Vector3(rb.position.x, rb.position.y+ 1, cam.transform.position.z);
 
         if (horizontal > 0.01f)
         {
@@ -52,10 +48,16 @@ public class KutbotScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Pr�ft, ob der Spieler den Boden ber�hrt
+       
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Box"))
         {
-            isGrounded = true; // Spieler ist auf dem Boden
+            isGrounded = true; //player on the floor
+        }
+
+        if (collision.gameObject.CompareTag("goal"))
+        {
+            FindObjectOfType<Timer>().SaveTime();
+            SceneManager.LoadScene("leaderborad");
         }
     }
 

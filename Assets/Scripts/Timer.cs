@@ -7,8 +7,12 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timertext;
     [SerializeField] float remainingTime;
+
     //Gameobjet to link to pannel
     public GameObject death;
+
+    //variable time saver
+    public static float finalTime;
 
     // Update is called once per frame
     void Update()
@@ -28,5 +32,9 @@ public class Timer : MonoBehaviour
         {
             death.SetActive(true);
         }
+    }
+    public void SaveTime()
+    {
+        finalTime = remainingTime;
     }
 }
