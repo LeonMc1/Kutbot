@@ -23,7 +23,7 @@ public class KutbotScript : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y); // Setzt nur die X-Geschwindigkeit
 
         // Sprung-Logik
-        if (Input.GetKey(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce); // Setzt nur die Y-Geschwindigkeit f�r den Sprung
             isGrounded = false; // Setzt den Grounded-Status auf false, wenn der Spieler springt
